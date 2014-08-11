@@ -1,0 +1,341 @@
+/* page layout styles */
+*{
+    margin:0;
+    padding:0;
+}
+/*html {
+	position:relative;
+	min-height:100%;
+}*/
+body {
+	/*background-image:url(../images/Widgets/background-tile2.png);*/
+    background-color:#666;
+    color:#fff;
+    /*font:14px/1.3 Arial,sans-serif;*/
+	font-family:Verdana, sans-serif;
+	/*font-family:"Times New Roman", Times, serif;*/
+	font-size:12px;
+	margin-top:15px;
+	 /* margin: 0 0;60px;*/
+}
+header {
+    background-color:#444;
+    box-shadow: 0 -1px 2px #111111;
+    display:block;
+    height:60px;
+    /*margin: 0 auto;*/
+    position:relative;
+    width:1100px;
+	margin: 0 auto;
+    /*width:100%;*/
+    z-index:100;
+}
+header h2.header_left{
+    font-size:22px;
+    font-weight:normal;
+	color:#fff;
+    left:50%;
+    margin-left:-500px;
+    padding:22px 0;
+    position:absolute;
+    /*width:540px;*/
+}
+header h2.header_right{
+    font-size:18px;
+    font-weight:normal;
+	color:#fff;
+    left:50%;
+    margin-left:380px;
+    padding:25px 0;
+    position:absolute;
+}
+
+header h2.header_right_wordspage{
+    font-size:18px;
+    font-weight:normal;
+	color:#fff;
+    left:50%;
+    margin-left:420px;
+    padding:25px 0;
+    position:absolute;
+}
+
+h2.header_right a, h2.header_right a:active, h2.header_right a:visited, h2.header_right a:hover {
+    text-decoration:none;
+    color:#fff;
+}
+
+h2.header_right_wordspage a, h2.header_right_wordspage a:active, h2.header_right_wordspage a:visited, h2.header_right_wordspage a:hover {
+    text-decoration:none;
+    color:#fff;
+}
+
+header a.stuts,a.stuts:visited{
+    border:none;
+    text-decoration:none;
+    color:#fcfcfc;
+    font-size:14px;
+    left:50%;
+    line-height:31px;
+    margin:23px 0 0 110px;
+    position:absolute;
+    top:0;
+}
+header .stuts span {
+    font-size:22px;
+    font-weight:bold;
+    margin-left:5px;
+}
+
+.container {
+	/*background-image:url('../images/Widgets/background-tile3.png');*/
+	background-color:#000;  /* was ddd */
+    color: #000;
+    margin: 0 auto;
+	padding-bottom:75px;
+	/*margin-bottom:100px;*/
+    position: relative;
+    width: 1100px;
+	/*height: 900px;*/
+	overflow:auto;
+	height:auto; !important
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+
+/* these classes are used only for the cross-fade method as opposed to the sliding images method (fun to write but less elegant I think) */
+.transition_img {    /* bind opacity property to a transition */
+	-webkit-transition: opacity 2s ease;
+	-moz-transition: opacity 2s ease;
+	-o-transition: opacity 2s ease;
+	transition: opacity 2s ease;
+}
+
+.invisible_img {
+	opacity:0;
+}
+
+.visible_img {
+	opacity:1;
+    border: 1px solid #999;
+	/* these two work for too tall of images but not too wide */
+	/*width:auto;*/
+	/*max-height:100%;*/
+	/* these two work for too wide of images but not too tall */
+	/*height:auto;*/
+	/*max-width:100%;*/
+	/* so now we put one or the other directly in the img tag on the server side as the page is rendered */
+}
+
+/********************************************************************************************************************************************/
+
+#slideshow {    /* this is the Canvas id for the landing page image if sliding */
+    border:1px #000 solid;
+    box-shadow:4px 6px 6px #444444;
+    display:block;
+    margin:0 auto;
+	/*position-top:100px;*/
+    height:700px;
+    width:850px;
+	position:relative;
+	left:-75px;
+	top:30px;
+}
+
+#aboutImageButton {
+	background-color:#000;
+    color: #fff;
+	font-size:16px;
+	position:relative;
+	left:890px;
+	top:50px;
+	border:none;
+}
+
+#thumbnail {
+	display:block;
+	width:100px;
+	height:100px;
+	border:0px #000 solid;
+	/*box-shadow:2px 3px 3px #444444;*/
+    box-shadow:0px 0px 2px 2px #444;	
+	margin-bottom:10px;
+	position:absolute;
+	left:950px;
+	top:100px;
+}
+	
+.container .slides {
+    display:none;
+	/* reproduce canvas layout so fade method shows in exactly the same place as the sliding method*/
+	background-color:#eee;
+	/*background-image:url(../images/backgrounds/bk_canvas3_lighter.png);*/
+	border:1px #fff solid;
+    /*box-shadow:4px 6px 6px #888888;*/
+    box-shadow:0px 0px 6px 3px #aaa;
+    margin:0 auto;
+    height:700px;
+    width:850px;
+	position:relative;
+	left:-75px;
+	top:30px;
+}
+
+/*.container .fadeshow {
+    display:none;
+	border:1px #000 solid;
+    box-shadow:4px 6px 6px #444444;
+    margin:0 auto;
+    height:700px;
+    width:700px;
+	position:relative;
+	top:30px;
+}*/
+
+.container .thumbs {
+    display:none;
+}
+
+#blipspan {}
+#imageblips_table {position:absolute; left: 950px; top:230px;}
+.blip {cursor:pointer;}
+
+#slidecontrols {height:120px; margin-left:750px; position:absolute; top:50px; left:0px;}
+
+#arrow_prev{
+
+    height:36px;
+    width:36px;
+	margin:5px;
+	background-color:#9FF;
+    position:absolute;
+	top:-5px;
+	left: 178px;
+	background:url("../images/Widgets/prev_arrow_small.png") no-repeat top left;
+	display:block;
+    /*top:50%;*/
+    /*margin-top:-43px;*/
+    cursor:pointer;
+    /*z-index:5000;*/
+}
+#arrow_next{
+
+    height:36px;
+    width:36px;
+	margin:5px;
+	background-color:#9FF;
+    position:absolute;
+	top:-5px;
+	left: 278px;
+	/*top:-100px;*/
+	background:url("../images/Widgets/next_arrow_small.png") no-repeat top left;
+	display:block;
+    /*top:50%;*/
+    /*margin-top:-43px;*/
+    cursor:pointer;
+    /*z-index:5000;*/
+}
+#stop_start{
+
+    height:72px;
+    width:72px;
+	margin:5px;
+	background-color:#9FF;
+    position:absolute;
+	top:-22px;
+	left: 210px;
+	/*top:-100px;*/
+	background:url("../images/Widgets/pause_bars_small.png") no-repeat top left;
+	display:block;
+    /*top:50%;*/
+    /*margin-top:-43px;*/
+    cursor:pointer;
+    /*z-index:5000;*/
+}
+
+#tagspan {position:absolute; top:550px; left:930px; margin-right:20px;}
+
+.tags {
+}
+
+button.tag_inactive {
+	color:#fff;
+}
+
+/* ref http://stackoverflow.com/questions/1367409/how-to-make-button-look-like-a-link */
+/* We do not want the tags as links because we are not going anywhere, just triggering some
+   javascript to change the images in play, so we'll style the tag buttons to look like links. */
+button.tags, button.tags:focus, button.tags:active {
+	background:none!important;
+	border:none;
+	margin:0;
+	padding:0!important;
+	outline:none;
+	outline-offset:0;
+	cursor:pointer;
+	text-decoration:none;
+	/*color:#f00;*/
+    font:15px/1.3 Arial,sans-serif;
+}
+
+button.tag_active {
+	color:#999;
+	font-weight:bold;
+}
+
+
+/*.arrow.next {background:url('images/Widgets/next_arrow.jpg') no-repeat top left; background-color:#9FF;}*/
+/*.arrow.prev {background:url('images/Widgets/prev_arrow.jpg') no-repeat top left; background-color:#F90;}*/
+
+footer {
+	clear:both;  /* don't remove */
+	display:block;
+    /*background-color:#212121;*/
+    background-color:#333;
+    /*display:block;*/
+    /*margin: 0 auto;*/
+    position:relative;
+	left:0;
+	/*bottom:0;*/
+	margin:0 auto;
+	margin-bottom:20px;
+	height:60px;
+    width:1099px;
+	color:#fff;
+    border:1px #000 solid;
+    /*width:100%;*/
+    /*z-index:100;*/
+}
+.footer_text {
+	text-align:center;
+	padding-top:15px;
+	margin-right:auto;
+	padding-bottom:15px;
+	margin-left:auto;
+	color:#fff;
+}
+.footer_text a, a:focus, a:active, a:active, a:link, a:visited{
+	font-size:14px;
+	color:#eee;
+	text-decoration:none;	
+	border-bottom: 1px #eee dotted;
+}
+.footer_text a:hover {
+	color:#fff;
+	text-decoration:none;	
+	border-bottom: 1px #fff solid;
+}
+
+#aboutImageDialog {
+	color: #ddd;
+    background-color:#666;	
+}
+#aboutImageTitle {
+	color:#ddd;
+	margin-top:10px;
+	margin-bottom:8px;
+}
+#aboutImageCode {
+	color:#bbb;
+    margin-top:25px;	
+}

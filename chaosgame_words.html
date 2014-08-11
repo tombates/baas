@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>The Chaos Game at Between Art and Science</title>
+<link href="CSS/baas_images.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="CSS/aboutnew.css" type="text/css" />
+<link href="CSS/dropmenu.css" rel="stylesheet" type="text/css" />
+<link href="CSS/math.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/mysiteutils.js"></script>
+<script src="JS/baas_g_analytics.js"></script>
+</head>
+
+<body>
+<header>
+<h2 class="header_left">The Chaos Game...</a></h2>
+<?php include("dropmenu_phpinject.html"); ?>
+</header>
+
+<div class="container">
+<div id="left">
+
+<h2 class="topichdr">A Family of Regular Fractal Gaskets<br>
+and a Bizarre Surprise</h2>
+
+<img class="centered" src="images/chaosgame/sierpinski-basic-with-path.png" alt="Chaos Game Sierpinski Gasket" width="580" height="500" />
+<p class="imgcaption">A chaotically generated Sierpinski gasket. The starting point is circled in red. 1,000,000 points were plotted, along with the first ten jumps.</p>
+
+<p class="aboutcontent">
+In the realm of fractals there is an algorithm sometimes called the chaos game<SUP>1,2</SUP> that is a somewhat surprising way to produce the
+image above. The figure above is the familiar Sierpinski gasket and
+the &quot;game&quot; that generates it is really not a game, but rather a very simple algorithm. Start with an equilateral triangle and pick a
+point, any point, inside it or not. Next pick one of the  vertices of the triangle <I>at random</I>. The <I>at random</I>
+part is important. Make a mark halfway from the initial point
+to the chosen vertex. Now treat this mark like the initial point: pick a vertex at
+random and make a new mark halfway from the first mark to the new vertex. Repeat this many times and <I>voil&#224;</I>: you get the image above of the classic Sierpinski gasket.</p>
+<p class="aboutcontent">
+This is pretty cool when you first see it. There are several ways to generate
+the Sierpinski gasket but a way that involves half way hopping to randomly chosen corners of a triangle
+is perhaps a little hard to understand at first.</p>
+<p class="aboutcontent">
+Probably because of its suprising nature this so-called  game has been written about a fair amount, both in books
+and on the web. Typically, after demonstrating the result of the "half way" algorithm, the authors show the mess of points that occurs if you play around just a bit with the algorithm. For
+example, you can change the hop, or cut fraction, to a value
+other than 0.5, or try starting with a different polygon instead of a triangle, or both. Generally this results in a fuzzy blob with varying hints of structure. In the case of the square with the
+cut fraction still at one half you get a completely filled in square with no apparent fractal structure.</p>
+<p class="aboutcontent"> At this point most discussions of the chaos game either end or segue into generalizations of the algorithm that generate beautiful figures resembling organic structures  such as fern leaves. These algorithms collectively are called iterated function systems (IFS) and they are very interesting and useful for computer generation of images, among other things.</p>
+<p class="aboutcontent">But the question that interested me when I first encountered the chaos game was the narrower generalization from triangle to any regular polygon, on which everything I read was silent. Since I couldn't resist trying to figure it out for myself, this page is an account of my own process of solving this problem.</p>
+<p class="aboutcontent"> In addition to the lack of a generalization to other polygons, the particular value of 0.5 as the triangle cut fraction never seemed to get explained geometrically. And when the fuzzy blobs are presented for other polygons the obvious question seems to be: is it possible that a different value of the cut fraction would give a crisp fractal? In particular, is there a formula based only on the order of the polygon that would yield the cut fraction as a function of the polygon's order? I assumed there was and I wanted to find that formula and understand the cut fraction from a geometric perspective, not just an algorithmic one.</p>
+
+<img class="centered" src="images/chaosgame/gaskets345-wrongcut.png" alt="Chaos Game various with wrong cut value." width="620" height="230" />
+<p class="imgcaption">The chaos game played with a square, pentagon and hexagon using 0.5 as the cut fraction. Kind of a mess.</p>
+
+<p class="aboutcontent">Because I am easily hooked by questions like this, and also love to code, the only thing to do was to write some code to play around with this in a very visual way.  That program is written in Java and can do many other things as well but you can explore this idea using a JavaScript <a href="chaosgame_demo.html">chaos game demonstration here</a> on this site.</p>
+<p class="aboutcontent"> If you experiment with such a program enough you'll find that, except for the square (more on that later), there is always a unique value of the cutting fraction k<SUB>n</SUB> for each regular polygon that gives rise to a sharp fractal structure with the symmetry of
+  that polygon, as seen below for the pentagon and hexagon.</p>
+
+<img class="centered" src="images/chaosgame/gaskets345-rightcut.png" alt="Chaos Game various with right cut value." width="620" height="230" />
+<p class="imgcaption">A square, pentagon and hexagon again but using k<SUB>n</SUB> = 0.5, 0.618, and 0.666. The square still <i>seems</i> to be an oddball.</p>
+
+<p class="aboutcontent"> One of the first surprises while I played was that another sharp fractal for the equilateral triangle can be generated by using a cutting
+fraction of 1.5 instead of 0.5. The value 1.5 generates a wispy snowflake-like fractal that is like a strange inverse of  the Sierpinski gasket.
+It turns out there are always two such cut fractions for any regular polygon and they are very simply related.</p>
+<p class="aboutcontent">I call the proper cut fraction for an n sided regular polygon the "kissing" number, or k<SUB>n</SUB>. We have
+  already seen that for n = 3, k<SUB>n</SUB> = 0.5. It turns out that the other cut fraction is always just 2
+  - k<SUB>n</SUB>. I'll call these the interior and exterior kissing numbers, or k<SUB>n</SUB> and k<SUB>n</SUB>'.</p>       
+
+<img class="centered" src="images/chaosgame/gaskets356-exteriorcut.png" alt="Chaos Game various with right cut value." width="620" height="230" />
+<p class="imgcaption">Fractal triangle, pentagon and hexagon  gaskets using the exterior kissing numbers k<SUB>n</SUB>' = 1.5, 1.382, and 1.333.</p>
+
+<p class="aboutcontent">Although I stumbled across the secondary kissing numbers from just playing around, what I really wanted to find was a formula that would give the correct kissing numbers for any
+regular polygon from just the number of sides. It turns out the kissing number has a very simple and beautiful geometric meaning. And that meaning will make obvious the reason for calling it the kissing number in the first place. The general formula for the interior kissing number for an n-sided polygon is:</p>
+
+<div class="math">
+	<span class="baseline">k<sub>n</sub>&nbsp; = 1 - &nbsp;</span>
+	<div class="fraction-inline">
+		<span class="numerator">sin(<FONT FACE="Symbol">&alpha;</FONT>)</span>
+		<span class="divider">__________</span>
+		<span class="denominator">sin(<FONT FACE="Symbol">&alpha;</FONT>) + cos(<FONT FACE="Symbol">&gamma;)</FONT></span>
+	</div>
+	<span class="baseline">,</span>
+</div>
+
+<p class="aboutcontent">where <FONT FACE="Symbol">&alpha;</FONT> = <FONT FACE="Symbol">&pi;</FONT>/n, <FONT FACE="Symbol">&beta;</FONT> =  2<FONT FACE="Symbol">&alpha;</FONT>
+(v<sub>k</sub> - 0.5), v<sub>k</sub> = ceiling(n/4) and <FONT FACE="Symbol">&gamma;</FONT> = <FONT FACE="Symbol">&beta;</FONT> - <FONT FACE="Symbol">&pi;</FONT>/2. This formula gives the proper cut fraction for making a fractal gasket from any regular polygon using the chaos game algorithm. The derivation of this formula is shown in the sidebar at the right. Because I'm a very visual thinker, I also explore the geometric meaning of the kissing numbers in a more directly visual way in the next section.</p>
+
+<h2 class="topichdr">All About Kissing Numbers</h2>
+<p class="aboutcontent">If you're going to follow this discussion further I suggest you play along using the <a href="chaosgame_demo.html">demonstration app</a>. The easiest way to do that is to open the link in another browser window (not a tab) so you can have the demonstration app and this explanation visible simultaneously.</p>
+
+<p class="aboutcontent">Sticking with the n = 3 case for the moment, if you gradually ramp the cutting fraction from 0  to 2
+you will see a progression from fuzzy blobs to crisp fractals at the two values 0.5 and 1.5. If you do the same
+for n = 5 you will see a similar thing but at cutting fractions of 0.618 and 1.382. You can see
+that at the first cutting fraction that works in the sense of sharpness, there are n
+ children of the parent polygon and that each of these first generation child polygons share two vertices,
+one with each of their neighbors. </p>
+<p class="aboutcontent">You can also think of these subpolygons as having arisen as a result
+  of n exact copies of the parent polygon, with each child uniquely anchored at one parent vertex, all uniformly shrinking until they no longer overlap but instead just kiss their two neighbor's shared vertices. Or think of each parent vertex spawning a child polygon that grows until it just touches its two neighbors.</p>
+
+<p class="aboutcontent">It turns out the kissing number is the ratio of the radius of the circle
+that passes through the centers of the kissing subpolygons - the first level children - to the radius of a circle that circumscribes the parent polygon. This ratio of the centroid
+circle to the circle circumscribing the parent is the  value that determines how far
+to hop towards a randomly chosen vertex if you want to generate a crisp fractal figure.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-geometry-tri-pent-hex.png" alt="Chaos Game geometry tri pent hex." width="600" height="200" />
+<p class="imgcaption">The geometry of the kissing number for any regular polygon. The kissing number is the ratio of the radius of the
+dashed circle passing through the centers of the first level of children polygons (purple) to the radius of the solid circle circumscribing the parent polygon (blue background).</p>
+
+<p class="aboutcontent">When the cut fraction is different from k<SUB>n</SUB> or k<SUB>n</SUB>' the marked locations can and
+frequently will fall outside the kissing subpolygons (at whatever level) even though they are still respecting the n-fold
+symmetry of the parent. The overlap seen at the highest level of the subpolygons is of course present
+fractally in the fuzzy cloud. Away from either kissing number the fractal nature gets smeared out by this overlapping. This is illustrated below.</p>
+<p class="aboutcontent">The derivation of the general kissing number formula is shown in the sidebar. Although there's nothing better than a general formula, there is  
+ a purely graphical way to understand the interior kissing number values. It has to do with how the edges of the first level subpolygons line up along any edge of the parent polygon.
+Each parent edge will contain one edge from each of two first level child polygons. There may or may not be a gap between the two child edges. For both
+the triangle and square there is no gap. For all other polygons there is always a gap. The image below illustrates how the interior kissing number is related to this situation.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-graphical-kissing-numbers.png" alt="Chaos Game showing strangeness of algorithm." width="600" height="304" />
+<p class="imgcaption">A graphical way of understanding the interior kissing number values.</p>
+
+<h2 class="topichdr">Targeting History, and the Square Gasket Explained</h2>
+<p class="aboutcontent">If you think about each mark that is placed, you realize each one has a history of which vertices were targeted that eventually led to it. In the image below, the marks are colored according to their vertex targeting history. On the left, the coloring is based on the very last vertex targeted before marking, corresponding to a targeting history depth, h, of 1. In the center we color based on the vertex two steps before marking and on the right four steps before marking. Each vertex has an implied unique color and we color the mark based on that and the history depth we are displaying.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-history1.png" alt="Chaos Game vertex history illustration." width="620" height="220" />
+<p class="imgcaption">Vertex history coloring. This coloring shows that one can read a mark's history directly from the child-child-child-etc. subpolygon it is in.</p>
+
+<p class="aboutcontent">The coloring is certainly convenient for seeing the history but it's not necessary. It's really all about location. A mark's exact location within the figure tells the history of vertex targeting that preceded its placement. So in the center image, all the marks in the circled green sub-triangle have a final history of GR (i.e., the final vertex targeted was R, and just before that it was vertex G) while all marks in the circled sub-triangle on the right have a final history of BBGR. You can literally read the history from the location. Pretty cool.</p>
+<p class="aboutcontent">Now on to the mystery of the square. The apparent lack of structure in the square version of the chaos game is something only coloring history can dispel. The kissing number formula gives k<SUB>n</SUB> = 0.5, just like for the triangle. If we move away from 0.5 for the square we suddenly see some structure but this is really the equivalent of the &quot;blurring&quot; we see with other polygons when we are off k<SUB>n</SUB>. You can see this for yourself on the <a href="chaosgame_demo.html">chaos game demo page</a> by setting the order to 4 and the cut fraction to something slightly off 0.5.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-squarehistory1.png" alt="Chaos Game square case history." width="620" height="220" />
+<p class="imgcaption">The square gasket has no open spaces, but it definitely has stucture, which is clearly revealed by history coloring. The horizontal and vertical lines are rounding artifacts.</p>
+
+<p class="aboutcontent">In the image above we  finally see the self-similar structure of the square case via the history. We see that there is a squares-within-squares geometry all the way down, but no open space, which really isn't surprising since dividing the parent square's sides in half leaves no open space, unlike the case for any other polygon. Another way of thinking about the square is that  first level child squares (h = 1) kiss on edges rather than vertices, and <em>all</em> non-perimeter edges are kissing. That's the only reason there's no apparent structure without history coloring.</p>
+<p class="aboutcontent">It's also instructive to use history to see the way structure gets fuzzed out by going off the kissing numbers for a polygon. We can see that the structure is still there but is either going ever more out of focus or shrinking away.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-pent-offk1.png" alt="Chaos Game pentagon off kissing number examples." width="620" height="220" />
+<p class="imgcaption">Although the symmetry of the original polygon is still present when the cut fraction is "wrong," it becomes ever more obscured in the center case
+whereas on the right the figure is collapsing onto the vertices of the parent polygon but will then bloom through on its way to the exterior fractal.</p>
+
+<h2 class="topichdr">The Promised Bizarre Surprise</h2>
+<p class="aboutcontent">Finally, it turns out there is a kind of liar's paradox going on with the algorithm that makes the figures. They really are very strange, almost spooky in a way, and here's why.</p>
+<p class="aboutcontent">First think of making such figures in another way. Consider a triangle of black paper. Make an interior triangle from the midpoints of each edge and remove it. Repeat with the three smaller child triangles. You are heading directly towards the same figure, to all appearances.</p>
+<p class="aboutcontent">Our way here is very different. To repeat, it doesn't matter where you pick the first point. It can be inside the parent or even very far outside it. The algorithm ensures it will come into the parent very quickly and from there on you might as well have started inside. So let's just say we start at (0,0) and let's say the parent figure is the triangle. The figure below shows what happens.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-tri-strangeness1.png" alt="Chaos Game showing strangeness of algorithm." width="512" height="450" />
+<p class="imgcaption">The path shows the first ten steps of one million marks placed. 
+Note that every point is in the center of white space, <i>exactly</i> like the starting point. This figure is drawn by never being drawn!</p>
+
+<p class="aboutcontent">In addition to the marks all being in white space, the most important thing to notice is that there is only one point placed for each size of white space triangle and this happens in descending size order. That is, each mark ends up in a next smaller white space triangle compared to the previous mark. The figure is self-similar all the way down and that's true for whatever order of polygonal fractal gasket, so in principal there are always ever-smaller white space bits to land in. As with any order, the child white space triangles  are getting smaller exponentially fast.</p>
+<p class="aboutcontent">In this particular case we have 1/4 to the power of the number of steps, which is fantastically fast shrinking. This means that  every visible white space triangle is actually being outlined by the marks falling in ever tinier white space triangles - the number of which grow by a factor of 3 at each level. The white space almost instantly becomes finer than the display medium could ever show or the human eye could ever see. But if we did zoom way in on the millionth mark placed, it too would be in the middle of a white triangle. I think the word trippy definitely applies.</p>
+
+<h2 class="topichdr">Conclusion</h2>
+
+<p class="aboutcontent">I wanted to explore the chaos game from a bit of a different angle  than most other treatments. I believe experimenting via code is one of the best ways to explore topics like this.  The <a href="chaosgame_demo.html">demonstration app page</a> is an extremely simplified version of the software I used to play with these ideas, but it is sufficient to get a good feel for what's going on in the regular polygon chaos game.</p>
+<p class="aboutcontent">Enjoy!</p>
+<div class="linkdiv">
+<p class="references">Links:</p>
+<p class="references"><a href="http://en.wikipedia.org/wiki/Chaos_game">Wikipedia Chaos Game page</a></p>
+</div>
+<div class="refdiv">
+<p class="references">References:</p>
+<p class="references">1. Barnsley, Michael. <i>Fractals Everywhere.</i> 1993.</p>
+<p class="references">2. Peitgen, Heinz-Otto, & Saupe, Dietmar, eds., <i>The Science of Fractal Images.</i> 1988.</p>
+</div>
+
+         
+</div>   <!-- end id left -->
+
+<div id="right">
+<h2 class="topichdr_rightnav">Kissing Formula Derivation</h2>
+
+<img class="centered" src="images/chaosgame/chaosgame-pentageometry1.png" width="200" height="200" alt="Kissing hexagons geometry" />
+<p class="imgcaption_rightnav">In the image above we see the geometry of a pentagon with five "just kissing" child pentagons. You can draw
+a similar figure for any regular polygon, although for the square alone, faces will kiss.</p>
+
+<p class="imgcaption_rightnav"> The question is how in general to find the size of the child polygons relative to the parent. For simple
+cases like the equilateral triangle we can do this by inspection. But we want a general formula ultimately depending only on the order, or
+number of sides, n, of the parent polygon.</p>
+<p class="imgcaption_rightnav">One way to start is to imagine each kissing child polygon surrounded by a circle.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-pentageometry-forformderiv1.png" width="200" height="200" alt="Kissing hexagons geometry" />
+
+<p class="imgcaption_rightnav"> The child-containing circles, and the child polygons themselves, would all have their centers on the dashed circle shown in the figure. The radius of those circles, and so of the child polygons, would then be given by the difference between the radius of the parent circle and the radius of the dashed circle.</p>
+<p class="imgcaption_rightnav">Finding the radius of n children circles just touching their neighbors and the inner edge of a larger circle is not difficult. Assuming the radius of the parent circle is 1, the children circles have radius</p>
+
+<div class="math">
+	<div class="fraction-inline">
+		<span class="numerator">A</span>
+		<span class="divider">__________</span>
+		<span class="denominator">1 + A</span>
+	</div>
+	<span class="baseline">,</span>
+</div>
+
+<p class="imgcaption_rightnav">where A = sin(<span class="pifont">&pi;</span>/n), n &gt; 1. With this simple formula you can arrange for any number of kissing circles along the inner edge of a parent circle.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-3kissingcircles.png" width="200" height="200" alt="3 kissing circles" />
+
+<p class="imgcaption_rightnav">So kissing circles are easy. But simple kissing circles are not the same as the circles that circumscribe kissing polygons. Such circles have the radius we want for packing polygons rather than circles around the parent. Below you can see the discrepancy between mere kissing circes and circumscribing circles of kissing polygons.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-3kissingcircles-and-triangles.png" width="200" height="200" alt="3 kissing circles" />
+
+<p class="imgcaption_rightnav">Both the green triangles and the dashed green circles have the same centers. Assuming the containing circle has a radius of 1, and the green circles have radius r, the interior kissing number is just 1 - r, which is also the radius of a circle passing through the centers of the both the green circles and green triangles.</p>
+<p class="imgcaption_rightnav">So, how to find that. It's not as easy as for circles because our child polygons must touch not just anywhere but at vertices. To work out the geometry we  first need to find out out which vertices kiss for any given order of parent/child polygons.</p>
+<p class="imgcaption_rightnav">Returning to the kissing pentagons we started with, notice that each small pentagon has two kissing vertices, one with each immediate neighbor. If we label the vertex of a child that is shared with its parent vertex 0, we are going to first need a formula that tells us which vertices will kiss as a function of n.</p>
+<p class="imgcaption_rightnav">Let's zoom in on the geometry of parent and child enneagons (9-sided regular polygons).</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-9gon-larger-detail.png" width="200" height="200" alt="3 kissing circles" />
+
+<p class="imgcaption_rightnav">First, notice that the child enneagons kiss at the third vertex from 0. Most importantly though, notice that they kiss on the perpendicular from the center of the parent face they share. <i>That is true for any order of regular polygon and key to the solution.</i></p>
+<p class="imgcaption_rightnav">The child polygon must kiss its neighbor before its perimeter turns away from the perpendicular. Look at the edges 0-1, 1-2, 2-3 of the child on the right. Clearly kissing must occur before an edge is turned more than 90 degrees from the 0-1 edge. This means we want to know which pie piece has the edge whose angle from the horizontal is as close to but not greater than 90 degrees. That will be the pie piece with the kissing vertex.</p>
+<p class="imgcaption_rightnav">In this example each pie slice is 360/9 = 40 degrees. This means kissing must occur on the pie slice with edge 2-3 because that edge is at 80 degrees from horizontal.</p>
+<p class="imgcaption_rightnav">So we can find which pie slice of any order of child polygon will have the kissing vertex on its edge. For any polygon, each pie slice subtends 360/n degrees. We divide that into 90. If it goes exactly that gives the pie slice we want. If there's a remainder we take the next slice.</p>
+<p class="imgcaption_rightnav"> By keeping the 90 degree limit in mind we can make a table of n and the kissing vertex index:</p>
+<table>
+  <tr>
+    <th>n</th>
+    <th>deg/slice</th>
+    <th>vertex</th>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>120</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>90</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>72</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>60</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>51.43</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>45</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>40</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>36</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>32.72</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>30</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>27.69</td>
+    <td>4</td>
+  </tr>
+</table>
+<p class="imgcaption_rightnav">From this table we can look for a pattern between n and the kissing vertex. Note that the kissing vertex stays the same for four consecutive values of n, then steps up by one. To transform this observation into mathematical or programming terms,  we need to know about the ceiling function. Ceiling(x) rounds x up to the nearest integer if x is not an integer already. You can see that ceiling(n/4) will yield the same values for the kissing vertex as the table. More importantly it works for any n, no table needed. So</p>
+<p class="formula">v<sub>kissing</sub> = ceiling(n/4)</p>
+<p class="imgcaption_rightnav">Now we are on our way! Knowing this formula for the kissing vertex allows us to go from continuous circle packing to polygon packing.</p>
+<p class="imgcaption_rightnav">Returning to the enneagon, let's add to our figure the somewhat more detailed geometry we need to find the radius of those first level child polygons. Let's call the radius of the parent (i.e., the distance from its center to any of its vertices <strong>R</strong>. And let's call the radius of a child polygon  <strong>r</strong>. Our unknown is <strong>r</strong> and for convenience we will end up setting <strong>R</strong> = 1. Our ultimate goal is the kissing number but it's just <strong>k</strong> = <strong>R </strong>- <strong>r</strong>. So all we need do is find the formula for <strong>r</strong> from the geometry.</p>
+
+<img class="centered" src="images/chaosgame/chaosgame-9gon-larger-completeformula.png" width="210" height="464" alt="3 kissing circles" />
+
+<p class="imgcaption_rightnav">In the figure above we have two triangles that both have as a side the heavily dashed horizontal line <strong>s</strong> that goes from <strong>P</strong>, the center of the child, to the lightly dashed perpendicular that drops from <strong>C</strong> to the edge of the parent. The bigger triangle has hypotenuse <strong>R - r</strong> and the smaller one has hypotenuse <strong>r</strong>.</p>
+<p class="imgcaption_rightnav">From the bigger triangle we have</p>
+<p class="formula pifont">s = (R - r)sin(&alpha;)</p>
+<p class="imgcaption_rightnav">while from the smaller one we have</p>
+<p class="formula pifont">s = r cos(&#947;).</p>
+<p class="imgcaption_rightnav">This is just what we need: two independent equations involving our unknown <strong>r</strong>.</p>
+<p class="formula pifont">(R - r)sin(&alpha;) = r cos(&#947;)</p>
+<p class="imgcaption_rightnav">Setting <strong>R = 1</strong> and solving this for <strong>r</strong> gives:</p>
+<div class="math">
+      <span class="baseline">r &nbsp;= &nbsp;</span>
+	<div class="fraction-inline">
+		<span class="numerator">sin(&alpha;)</span>
+		<span class="divider">__________</span>
+		<span class="denominator">sin(&alpha;) + cos(&gamma;)</span>
+	</div>
+	<span class="baseline">.</span>
+</div>
+
+<p class="imgcaption_rightnav">And since the kissing number <strong>k = 1 - r</strong> we have</p>
+
+<div class="math">
+      <span class="baseline">k &nbsp;= &nbsp; 1 - &nbsp;</span>
+	<div class="fraction-inline">
+		<span class="numerator">sin(&alpha;)</span>
+		<span class="divider">__________</span>
+		<span class="denominator">sin(&alpha;) + cos(&gamma;)</span>
+	</div>
+	<span class="baseline">.</span>
+</div>
+
+<p class="imgcaption_rightnav">And that's the general formula for the interior kissing number for any order of a regular polygonal fractal gasket.</p>
+<p class="imgcaption_rightnav">Well, it should be anyway. Let's see what values it gives for the interior kissing numbers. While we're at it let's compare them to the value that gives kissing circles. If you think about it, as the order of the parent polygon goes up, the kissing value should get closer to the circle value since the polygon becomes more and more like a circle.</p>
+<table>
+  <tr>
+    <th>n</th>
+    <th>k polys</th>
+    <th>k circles</th>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>0.5</td>
+    <td>0.5359</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>0.5</td>
+    <td>0.5858</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>0.6180</td>
+    <td>0.6298</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>0.666</td>
+    <td>0.6666</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>0.6920</td>
+    <td>0.6974</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>0.7071</td>
+    <td>0.7232</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>0.7422</td>
+    <td>0.7451</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>0.7639</td>
+    <td>0.7639</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>0.7784</td>
+    <td>0.7802</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>0.7887</td>
+    <td>0.7944</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>0.8058</td>
+    <td>0.8069</td>
+  </tr>
+</table>
+
+<p class="imgcaption_rightnav">There are at least two things to notice here. First we see that the polygon kissing number values
+  are generally getting closer to the circle values. However, for n = 6 and n = 10 they're exactly equal. In fact, starting with n = 6
+  every fourth n will give the same value for circles or polygons, which is directly related to the earlier discussion and use of the ceiling function.</p>
+<p class="imgcaption_rightnav">The demonstration app uses the formula we've found to allow any order of parent polygon as the &quot;board&quot; on which to play the chaos game. There you can also play around with all the other aspects of the regular polygon version of the chaos game discussed on this page.</p>
+</div>			
+</div>   <!-- end id container -->
+
+<footer><div class="footer_text"> <script language="JavaScript">NothingToSeeHere('info')</script></div></footer>
+</body>
+</html>

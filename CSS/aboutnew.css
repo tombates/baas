@@ -1,0 +1,225 @@
+/* CSS shared between ulamspiral_words.html, chaosgame_words.html, about_images.html and aboutme.html */
+
+.container {
+	background-color:#f0f0f0;   /* to match right div, which is shorter than left content wise */
+	padding-bottom:0px;
+}
+img.centered {display:block; margin-left:auto; margin-right:auto; border:2px solid #666; border-radius:5px;}
+
+h2.topichdr {color:#000; margin-top:55px; margin-bottom:20px; text-align:center; font-size:16px; font-weight:200;}
+.imgcaption {color:#000; margin-left:200px; margin-top:10px; margin-right:200px; margin-bottom:20px; text-align:center; font-size:12px; font-weight:100;}
+.imgcaption_rightnav {color:#000; margin-left:20px; margin-top:20px; margin-right:20px; margin-bottom:15px; text-align:justify; font-size:11px; font-weight:100; text-justify:distribute;}
+.imgcaption_rightnav_tfyh {color:#000; margin-left:20px; margin-top:10px; margin-right:20px; margin-bottom:15px; text-align:center; font-size:11px; font-weight:100;}
+h2.topichdr_rightnav {color:#000; margin-left:15px; margin-right:15px; margin-top:20px; margin-bottom:20px; text-align:center; font-size:14px; font-weight:200;}
+
+.about_tom {color:#000; margin-left:20px; margin-top:20px; margin-right:20px; margin-bottom:15px; text-align:left; font-size:11px;}
+
+.topic {}   /* don't remove even though it's empty - used by our JQuery code */
+a.topic, a.topic:focus a.topic:active a.topic:active a.topic:link{
+	font-size:12px;
+	color:#000;
+	text-decoration:none;	
+}
+a.topic:hover {
+	color:#511;
+	text-decoration:none;	
+	border-bottom: 1px #511 dotted;
+}
+.current_topic {}   /* don't remove even though it's empty - used by our JQuery code */
+
+.emphasized {font-weight:450;}
+
+table, th, td {
+	border-collapse:collapse;
+	margin-left:auto; margin-right:auto;
+	margin-top:30px;
+	margin-bottom:10px;
+    border: 1px black solid;
+	text-align:right;
+	color:#000;
+}
+
+td, th { padding:4px 10px 4px 10px;}
+th{background-color:#888; text-align:center;}
+
+.formula {
+	text-align:center;
+	margin-top:25px;
+	margin-right:auto;
+	margin-bottom:25px;
+	margin-left:auto;
+	color:#000;
+}
+
+.formula_rightnav {
+	font-size:11px;
+	text-align:center;
+	margin-top:2px;
+	margin-right:auto;
+	margin-bottom:2px;
+	margin-left:auto;
+	color:#000;
+}
+
+.pifont {font-family:"Times New Roman", Times, serif; font-size:20px;}
+/* ----------banner for logo-------------- */
+#banner {
+height:114px;
+text-align: center;
+background:  url(../images/headerbaas1.jpg) no-repeat bottom left;
+background-color: #ffffff;
+padding: 0px;
+margin: 0px;
+}
+#banner img {padding:10px 0px; } 
+#bannertitle{padding-top:90px;padding-left:530px;font-size:1.5em;font-weight:500;}
+
+#subbanner {  /* the Directions... subbanner */
+	background-color:#990000;
+	margin:0;
+	padding-top:10px;
+	padding-right:0px;
+	padding-bottom:10px;
+	padding-left:0px;
+	height:20px;
+    /*border:2px solid;*/
+	border-bottom-width:3px;
+	border-bottom-color:#663300;
+	border-bottom-style:solid
+}
+
+h3.hdr3 {
+	color:#000;
+    font:16px/1.3 Arial,sans-serif;
+	text-align:center;
+	padding-top:50px;
+	margin-bottom:-20px;
+	padding-left:50px;
+}
+/* Now using this for the About The Work link */
+p.aboutheadings {font-size: 13px; color:#000000; margin-left:170px; margin-top: 2px;}
+p.aboutcontent {
+    font-size: 14px;
+	background-color:#fff;
+	color:#000;
+	margin-top:15px;
+	margin-right: 120px;
+	margin-bottom: 20px;
+	margin-left: 120px;
+	text-align:justify;
+	text-justify:distribute;
+}
+p.aboutcontent:first-child {
+	margin-top:75px;
+}
+
+p.signature_right {
+	margin-top:20px;
+	margin-bottom:40px;
+	margin-left:650px;
+}
+
+p.rightnavcontent {
+    font-size: 14px;
+	color:#333;
+	margin-top:5px;
+	margin-bottom: 20px;
+	margin-left: 30px;
+}
+
+.linkdiv {
+	background-color:#fff;
+	color:#000;
+	margin-top:50px;
+	margin-right: 120px;
+	margin-bottom: 5px;
+	margin-left: 120px;
+}
+.refdiv {
+	background-color:#fff;
+	color:#000;
+	margin-top:30px;
+	margin-right: 120px;
+	margin-bottom: 25px;
+	margin-left: 120px;
+}
+
+.references {
+    font-size: 12px;
+	margin-top:5px;
+	margin-bottom: 10px;
+	text-align:justify;
+	text-justify:distribute;
+}
+
+p.detailscontent {
+    font-size: 11px;
+	background-color:#191919;
+	color:#cccccc;
+	margin-top:15px;
+	margin-right: 50px;
+	margin-bottom: 20px;
+	margin-left: 5px;
+}
+
+h1.h1details {
+    font-size: 16px;
+	background-color:#191919;
+	color:#cccccc;
+	margin-top:15px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	padding-bottom: 0px;
+}
+
+ul.uldetails {
+padding-top:0px;
+	margin-top:5px;
+	margin-bottom: 10px;
+}
+
+/* --------------left column------------- */
+#left {  /* this comes from #left in betwaas.css */
+display:block;
+float: left;
+width: 850px;
+margin: 0px;
+padding-top: 0px;
+padding-right: 0px;
+padding-bottom: 0px;
+padding-left: 0px;
+color:black;
+background-color:#FFF;
+border-left: 1px solid black;
+text-align:left;
+}
+
+#left a, a:focus, a:active {
+	font-size:14px;
+	color:#000;
+	text-decoration:none;	
+	border-bottom: 1px #511 dotted;
+}
+#left a:hover {
+	color:#511;
+}
+
+/* --------------right column------------- */
+#right {  /* this comes from #container in betwaas.css */
+display:block;
+text-align:left;
+background-color:#f0f0f0;
+padding: 0px;
+padding-top: 100px;
+padding-bottom:0px;
+margin-left: 850px;
+margin-right: 0px;
+height:auto;
+width:250px;
+}
+
+div#right { 
+height:100%;
+min-height:100%;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>Ulam's Prime Spiral Demo at Between Art and Science</title>
+<link href="CSS/baas_images.css" rel="stylesheet" type="text/css" />
+<link href="CSS/ulamspiral_demo.css" rel="stylesheet" type="text/css" />
+<link href="CSS/dropmenu.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/mysiteutils.js"></script>
+<script src="JS/ulamspiral_demo.js"></script>
+<script src="JS/baas_g_analytics.js"></script>
+</head>
+<body>
+
+<header>
+<h2 class="header_left">Ulam's Spiral Demo...</h2>
+<?php include("dropmenu_phpinject.html"); ?>
+</header>
+
+<div class="container">
+
+  <canvas id="ulamspiraldemo" width="700" height="700">
+  We're sorry but your browser does not support the HTML5 Canvas element, which this page requires. You might consider updating your web browser.
+  </canvas>
+
+<div id="paramspan">
+<!--form class="paramform" WE DON'T NEED FORM AND IT CAUSES IE TO BEEP ON ENTER KEY BEING PRESSED BECAUSE WE HAVE NO SUBMIT -->
+<!--would like to use type="number" to get spinner adjustment for N and spotsize but only Chrome is implementing so far so not willing to use yet-->
+<form id="myForm">
+    <label title="Select desired operation:">Operation: </label><br>
+    <input class="group" id="primes" type="radio" name="option" value="0"/><label class="rlbl" for="primes" title="Only show primes.">primes only</label>
+    <input class="group" id="multiples" type="radio" name="option" value="1"/><label class="rlbl" for="multiples" title="Show all multiples of N.">multiples of N</label>
+    <input class="group" id="removal" type="radio" name="option" value="2"/><label class="rlbl" for="removal" title="Remove all multiples of N.">remove mults of N</label>
+    <input class="group" id="removalupto" type="radio" name="option" value="3"/><label class="rlbl" for="removalupto" title="Remove all multiples of all integers <= N.">remove up to N</label>
+</form>
+   
+<label title="The integer to show multiples of or to remove multiples up to." for="n">N: </label><input id="n" style="width:50px;" type="text" name="n"/> 
+<label title="The edge length in pixels of the squares that are drawn for each value on the spiraled number line.">Spot size: </label><input         id="size" style="width:50px;" type="text" name="size"/>
+<button type="button" class="calck sieve_anim" title="Show a multiples removal animation leading to the primes.">Animated Sieve</button>   
+<!--/form-->
+</div>
+</div>
+
+<footer>
+<div class="footer_text">
+    <script language="JavaScript">NothingToSeeHere('info')</script>
+</div>
+</footer>
+
+</body>
+</html>

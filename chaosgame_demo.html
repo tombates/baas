@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>The Chaos Game Demo at Between Art and Science</title>
+<link href="CSS/baas_images.css" rel="stylesheet" type="text/css" />
+<link href="CSS/chaosgame.css" rel="stylesheet" type="text/css" />
+<link href="CSS/dropmenu.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/chaosgame_demo.js"></script>
+<script src="JS/mysiteutils.js"></script>
+<script src="JS/baas_g_analytics.js"></script>
+</head>
+<body>
+
+<header>
+<h2 class="header_left">Chaos Game Demo, generalized...</h2>
+<?php include("dropmenu_phpinject.html"); ?>
+</header>
+
+<div class="container">
+
+  <canvas id="chaosgamedemo" width="700" height="700">
+    We're sorry but your browser does not support the HTML5 Canvas element, which this page requires. You might consider updating your web browser.
+  </canvas>
+
+<div id="paramspan">
+<!--form class="paramform" WE DON'T NEED FORM AND IT CAUSES IE TO BEEP ON ENTER KEY BEING PRESSED BECAUSE WE HAVE NO SUBMIT -->
+    <label title="The order of the parent polygon (eg. 5 for a pentagon).">order: </label> <input id="order" style="width:50px;" type="text" name="order"/>
+    <label title="The fraction along a line from the current point to a random vertex at which to place the next point.">cut at: </label><input id="cutatText" style="width:50px;" type="text" name="cutat"/>    
+    <input id="cutatSlider" type="range" min="0" max="2" step="0.001" value="0.5" name="cutat"/>    
+    <button type="button" class="calck kinterior" title="Use the correct interior cut fraction for this order of polygon. This is the interior kissing number.">Cut at Interior K</button>   
+    <button type="button" class="calck kexterior" title="Use the correct exterior cut fraction for this order of polygon. This is the exterior kissing number.">Cut at Exterior K</button>   
+    <label title="The radius of a circle that circumscribes the parent polygon.">radius: </label><input id="radius" style="width:50px;" type="text" name="radius"/>
+    <label title="The number of points to draw. A number between 10,000 and 100,000 is usually good.">N points: </label><input id="npoints" style="width:50px;" type="text" name="npoints"/>    
+    <label title="Color points according to the targeted vertex history if this integer value is > 0.">history: </label><input id="history_depth" style="width:50px;" type="text" name="history"/>
+</div>
+</div>
+
+<footer>
+<div class="footer_text">
+    <script language="JavaScript">NothingToSeeHere('info')</script>
+</div>
+</footer>
+
+</body>
+</html>

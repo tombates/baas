@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Ulam's Prime Spiral at Between Art and Science</title>
+<link href="CSS/baas_images.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="CSS/aboutnew.css" type="text/css" />
+<link href="CSS/math.css" rel="stylesheet" type="text/css" />
+<link href="CSS/dropmenu.css" rel="stylesheet" type="text/css" />
+<script src="JS/mysiteutils.js"></script>
+<script src="JS/baas_g_analytics.js"></script>
+</head>
+
+<body>
+<header>
+<h2 class="header_left">Ulam's Spiral...</h2>
+<?php include("dropmenu_phpinject.html"); ?>
+</header>
+
+<div class="container">
+<div id="left">
+
+<h2 class="topichdr">Ulam's Prime Spiral</h2>
+<img class="centered" src="images/ulam_65Klikemaniac.gif" alt="Ulam's Spiral" width="512" height="512" />
+<p class="imgcaption">Do you see the &quot;diagonal dust&quot;? This is Ulam's prime spiral over the first 65,000 integers, which shows the primes on a number line that has been square spiraled around itself. There are many fragments of diagonal lines visible.</p>
+<p align="center" class="style5">&nbsp;</p>
+<p class="aboutcontent">This is a meditation upon a figure that began as a doodle made by the mathematician Stanislaw Ulam at a conference in 1964 during another mathematician's talk. Ulam was an important mathematician of the twentieth century. Born in Poland in 1909, he was a key player in the Manhattan project. He was even referred to by some, perhaps jokingly, perhaps not, as the brains behind Edward Teller.</p> 
+<p class="aboutcontent"> In his doodle, Ulam drew the positive integers on a square spiral of the number line, with 0 (or 1, it doesn't much matter) at the center. Then he marked the primes on this folded up number line and immediately noticed that under this unusual transformation many primes tend to fall on diagonal line fragments as well as some horizontal and vertical fragments.</p>
+<img class="centered" src="images/medium/square-spiral-illustration.png" width="285" height="285" alt="Ulam's idea" />
+<p class="imgcaption">What Ulam did.</p>
+<p class="aboutcontent"> This seemed a bit surprising since the primes
+  are known to have no predictive structure. Upon returning home, Ulam explored his curious doodle a bit further using one of the very first powerful computers, which happened to be available to him because he was a major player at Los Alamos
+labs in New Mexico. This computer was called Maniac II, and with it he produced some of the very first purely mathematical
+computer graphics. Ulam wrote a short paper titled &quot;A Visual Display of Some Properties of the Distribution of Primes&quot;  with M. L. Stein
+  and M. B. Wells in 1964 and used the Maniac images to illustrate it<sup>1</sup>.</p>
+<p class="aboutcontent">Ulam's paper associated the diagonal dust with the known fact that many simple quadratic functions  produce primes  for some range of inputs.
+The right sidebar explains this  in more detail. The quadratic prime generators are fragmentary in their output and in no way represent a general nth prime algorithm. The pattern in Ulam's spiral can be seen as a visualization of these quadratic fragments. But why would quadratics have a tendency to generate prime numbers?</p>
+
+<p class="aboutcontent"> The primes being a kind of mathematical honey pot, the diagonal dust in his spiral has led to much discussion of the reason for the clearly visible pattern despite the lack of predictability in the primes. Some even assert this figure shows a hidden structure in the primes. Although such assertions are naive, it is nevertheless enlightening to explore why all those diagonal fragments appear by using an even more strongly visual tack than Ulam could manage in the days of Maniac II.</p>
+<p class="aboutcontent"> The image at the top of this page is a reproduction of one of the images Ulam made, showing the primes in the first
+  65,000 integers, made using modern software that allows flexible exploration of what happens when representations on a number line are spiraled up like this.</p>
+<p class="aboutcontent">You can begin by asking what simple sets of numbers look like when square spiraled. Here are images of all the multiples of 3, all the multiples of 7, and all odd numbers - meaning the <em>removal</em> of all multiples of 2 - on the square spiral.</p>
+
+<img class="centered" src="images/Ulam/mults-3-7-remove2.png" width="600" height="204" alt="multiples spirals" />
+<p class="imgcaption">From left to right: the multiples of 3, the multiples of 7, all odd integers.</p>
+
+<p class="aboutcontent">It turns out that every spiraling of the integer multiples of a single number creates a unique pattern. This usually but not always consists of a repetition of a sort of stamp made up of n values that is repeated but which rotates at diagonal quadrant changes, a clear example of which is seen in the multiples of 7 above. The image on the right is especially worth noting despite it looking like a boring checkerboard. It is a subtractive image of what is left <em>after</em> removing all the multiples of two, that is: it is all the odd numbers on the square spiral. Since all prime numbers except 2 are odd, <em>all</em> the prime numbers except 2 are in the blue squares of that checkerboard. And that is a good segue to a short explanation of the sieve of Eratosthenes.</p>
+<h2 class="topichdr">The Sieve of Eratosthenes</h2>
+<p class="aboutcontent">Eratosthenes' sieve is an ancient and brute force way of finding the primes. Nevertheless, it is simple to understand and instructive to explore visually using modern software, particularly in the current context. An interactive demonstration of the sieve in action  is provided <a href="ulamspiral_demo.html">here</a> for your enjoyment.</p>
+<p class="aboutcontent">Eratosthenes was a mathematician of the Greek world born in North Africa in 276 B.C.E. Among his many accomplishments, he made the first accurate measurement of the circumference of the earth. He also described a way to find the primes that, although not the go-to method for determining primality today, is very easy to understand and is in fact particularly useful to think about in the quest for the origin of the diagonal dust.</p>
+<p class="aboutcontent">The sieve is a very straighforward procedure. First, recall that a prime has no factors other than itself and one. Now consider the set of positive integers. Beginning with the number two, remove all of its multiples, except two itself, from the original set. That is, remove all the even numbers other than two. On the spiraled number line that would give the checkerboard on the right in the image above. The next integer that remains is three and it must be prime since it is clearly not a multiple of anything less than it. Now remove all multiples of 3 except 3 itself. Gone are 9, 15, 21, 27, etc.  (6 was already removed by the removal of two's multiples). The next number that remains is 5 and it is thus prime. Obviously we next remove all the remaining multiples of 5 except 5. This reveals 7 as a prime number. And so on. Each prime number is revealed in turn as a result of the elimination of all its predecessor's multiples.</p>
+<p class="aboutcontent"> At each stage there is a remainder structure of all the integers that have not yet been culled. It is important to realize that all the primes are present in the remainder structure at every stage. But the remainder structure itself is of course getting ever sparser and its diagonal nature is slowly eroding from its peak after the culling of the multiples of two. The primes, however, are the constants in the remainder structure. They are never culled. But this means the fraction of the remainder structure the primes represent on it increases as the remainder structure is further culled. As the remainder structure becomes less dense the primes become more dense on it.</p>
+<p class="aboutcontent">Here's an image showing the remainder structure - what's left - of the positive integers on the square spiral after removing the first few multiple sets, that is after the first few steps of Eratosthenes' sieve in action.</p>
+
+<img class="centered" src="images/Ulam/remove-mults357-1.png" width="600" height="200" alt="multiples removal 3, 5, 7 square spirals" />
+<p class="imgcaption">Remainder structures. The sieve in operation on the square spiral. Left to right: multiples of 2 and 3 removed; all multiples of 2, 3 and 5 removed; all multiples of 2, 3, 5 and 7 removed.</p>
+
+<p class="aboutcontent"> It is a tedious process if you don't have a modern computer, but it works, guaranteed. Unfortunately, or fortunately if you care about encryption, all methods of finding the primes are necessarily computationally intensive because there is no algorithm that directly yields the nth prime given only n. It turns out that visually following the sieve's progress on the square spiral number line suggests a graphical and intuitive way of comprehending the diagonal dust in Ulam's spiral of the primes. For that it's important to notice just how strongly diagonal the result of the sieve is from the beginning, the removal of the multiples of two.</p>
+<p class="aboutcontent">Ulam's point about quadratics is illustrated in the right sidebar. We all learn in school that the simplest quadratic equation, y = x<sup>2</sup>, graphs as a parabola on the xy plane. The y-axis and x-axis are both identical number lines of the integers. The square spiral does away with the x axis and just shows the y values, or ouput, of the quadratic equation. So think of the positive y-axis being the number line that is folded up into the spiral. It so happens that values of y that would satisfy y = x<sup>2</sup> (for example y = 4,16,36,64,... for x = 2,4,6,8,...) when shown on a spiraled-up y-axis  fall along exactly diagonal lines. Which means any simple constant change to y = x<sup>2</sup>, such as y = x<sup>2</sup> - 1, is also a diagonal line segment and just might contain a short sequence of primes. But why should that be? What is so magical about quadratic equations that they would have a propensity for generating primes, albeit in a stacatto fashion? Perhaps nothing other than the ubiquity of the primes themselves. It is possible to approach the question visually.</p>
+<h2 class="topichdr">The Prime Number Theorem</h2>
+<p class="aboutcontent">To visually understand the pattern we'd do well  to know just a little bit about something called the
+  prime number theorem, or <em>pnt</em> for short, which involves an approximate formula for the number of primes less than some number. The <em>actual</em> number of primes less than or equal to some integer n is referred to as <span class="pifont">&pi;</span>(n). Keep in mind that the use of <span class="pifont">&pi;</span> here <em>does not</em> refer to the transcendental value pi = 3.14. A simplified statement of the pnt is that <span class="pifont">&pi;</span>(n) can be approximated by the  formula</p>
+  
+<div class="math">
+	<span class="baseline"><span class="pifont">&pi;</span>(n) &nbsp;&#8776;&nbsp; </span>
+	<div class="fraction-inline">
+		<span class="numerator">n</span>
+		<span class="divider">__________</span>
+		<span class="denominator">(log(n) - 1)</span>
+	</div>
+	<span class="baseline">,</span>
+</div>
+
+<p class="aboutcontent">where log(n) is the natural logarithm of n. The table below shows how well this works.</p>
+
+<table>
+  <tr>
+    <th scope="col">n</th>
+    <th scope="col"><span class="pifont">&pi;</span>(n)</th>
+    <th scope="col">n/(log(n) - 1) </th>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>4</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>100</td>
+    <td>25</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>1,000</td>
+    <td>168</td>
+    <td>169</td>
+  </tr>
+  <tr>
+    <td>10,000</td>
+    <td>1,229</td>
+    <td>1,218</td>
+  </tr>
+  <tr>
+    <td>100,000</td>
+    <td>9,592</td>
+    <td>9,512</td>
+  </tr>
+  <tr>
+    <td>1,000,000</td>
+    <td>78,498</td>
+    <td>78,030</td>
+  </tr>
+</table>
+<p class="imgcaption">Actual number of primes below n and the number given by the pnt.</p>
+
+<p class="aboutcontent">There are more complicated versions of pnt approximation formulas but there's no need to go into them here. See the links at the end if you're interested. One thing to notice though is just how many primes there are. In the first 100,000 integers nearly ten percent are prime. Primes are special in many ways but they are not at all rare.</p>
+<p class="aboutcontent">So how does the pnt help us understand Ulam's prime spiral? Instead of thinking of <span class="pifont">&pi;(n)</span> as just a counting function, we could also think of it as an approximation of the probability of a number being prime in some range of the positive integers. So it is a kind of density function for the primes. This means we can see what a random sampling of the positive integers looks like if we sample at the prime number density. The idea is we run the sieve as usual but stop early, say after culling just the multiples of two. Then we select each value n in turn in the remainder structure and using our approximation to <span class="pifont">&pi;(n)</span> find a probability for it being &quot;prime&quot; and color it or not according to that probability. Of course we have to adjust the value of <span class="pifont">&pi;(n)</span> because the remainder structure is getting more sparse and so the density  of the primes on it is higher than on all the positive integers. But this is not hard because we can always figure out what fraction of the original integers remain after each culling stage.</p>
+<p class="aboutcontent">Recall the checkerboard of the odd numbers on the square spiral. Remember that all the primes are there. And all those blue squares constitute a grid of diagonal lines. And all those diagonal lines represent quadratic equations. It's equivalent really to say the first level remainder structure is both maximally diagonal and maximally dense with quadratics (and not just fragments of them).</p>
+<p class="aboutcontent">Here I am making the case that the diagonal dust is a reflection of the density of the primes on the highly diagonal remainder, or  quadratic, structure that can be seen from the very beginning of running Eratosthenes' sieve. In the end the only numbers left are the primes and so the method of finding them, sieve or no sieve, doesn't ultimately matter. But for purposes of understanding why the primes should display a diagonal dust on the square spiral the sieve is perfect. It lets us visually comprehend  that the only place for the primes to show up is on the developing remainder structure, which is extremely diagonal in nature.</p>
+<p class="aboutcontent">If this is true we should be able to pick numbers <i>without regard to primality but at the prime density</i> and see a similar diagonal dust. Furthermore, we should not see this before the first culling of the multiples of two because at that stage there is no diagonal structure.</p>
+<p class="aboutcontent">Here are  four such &quot;fake primes&quot; images. In the upper left image we pick from all the integers prior to any culling of multiples. There are as many black dots as there would be primes, more or less, but we see no diagonal structure. It looks pretty random, just as we'd expect. But the subsequent images are something else. The diagonal dust springs into being the moment the multiples of two are removed.  At each stage all remaining primes must still be on the remainder structure, which is getting sparser but retains a strong diagonal structure. It is the density of the primes that causes it to highlight the remainder structure long before its diagonal structure can be fully eroded. The primes are simply too dense to not show a diagonal dust in the square spiral representation.</p>
+<img class="centered" src="images/Ulam/fakedprimes-array.png" width="600" height="674" alt="multiples removal 3, 5, 7 square spirals" />
+<p class="imgcaption">Faking primes using the pnt on the square spiral. You can see that we quickly start getting a very similar diagonal dust. In light blue we see what remains of the integers at a particular stage of multiple removal.</p>
+
+<p class="aboutcontent"> This in no way diminishes the beauty of the figure. Indeed, it can be seen as a beautiful graphical introduction to important mathematical questions that still swirl about the primes. And understanding how the pattern comes to be is an opportunity to visually explore over two thousand years of mathematicians' collective pursuit of the mysteries of the primes. It can even be used as a way to understand the starting point of Riemann's theorem, the proof of which is one of the most important unsolved problems in contemporary mathematics.</p>
+
+<h2 class="topichdr">Conclusion</h2>
+<p class="aboutcontent">The diagonal dust in Ulam's prime spiral can be seen as being a result of the sheer density of the primes within the positive integers. One can produce quite similar figures by random selection of points from the remainder structure of the integers at the density of the primes once the multiples of only the  first few primes have been removed. The line fragments are the result  of the rising density of the primes on the eroding remainder structure rather than any result of their particular values. With each removal cycle of another prime's multiples, the prime density on the remainder structure goes up and this happens fast enough that the diagonal quality of the earliest remainder structure is never completely eroded.</p>
+<p class="aboutcontent">But none of that has anything to do with particular primes, just their density. It is almost thermodynamic in nature and playing out on the odd "crystal" of the square spiraled number line.</p>
+<p class="aboutcontent">There's more beauty than mystery in the diagonal dust in Ulam's spiral. It was a clever doodle indeed that Ulam drew. It's an unusual and scalable visual compression of the number line in a way that can allow patterns, meaningful or not, that would not normally be visible to become so.</p>
+
+<div class="linkdiv">
+<p class="references">Links:</p>
+<p class="references"><a href="http://primes.utm.edu/">The Prime Pages at University of Tennessee</a></p>
+<p class="references"><a href="http://demonstrations.wolfram.com/ThePrimeNumberTheorem/">Interactive PNT graph at wolfram.com</a></p>
+</div>
+<div class="refdiv">
+<p class="references">References:</p>
+<p class="references">1. Ulam, S., et. al., <i>On Certain Sequences of Integers Defined by Sieves</i>, Math. Mag., 29 (1956) 117-122. Also reprinted in American Math. Monthly, vol. 71, no. 5, May, 1964</p>
+</div>
+
+</div>  <!-- end left content -->
+
+<div id="right">
+<h2 class="topichdr_rightnav">Quadratics and Diagonals on the Square Spiral</h2>
+<img class="centered" src="images/Ulam/quadratic-simplest-220x350.png" width="220" height="350" alt="Ulam's idea" />
+<p class="imgcaption_rightnav">The general quadratic equation is:</p>
+<p class="formula_rightnav">y = ax<sup>2</sup> + bx + c.</p>
+<p class="imgcaption_rightnav">The image above is the simplest version of this simple equation, namely: y = x<sup>2</sup>. Shown are both the usual Cartesian parabola showing x and y values, and y-only values on the square spiral.
+                               On the square
+                               spiral this displays as two diagonal lines, the upper one being the squares of the even integers and the lower being
+                               the squares of the odd integers. Obviously this super simple quadratic can't yield a single prime (unless you count 1) since
+                               every y value is a perfect square.</p>
+<p class="imgcaption_rightnav">Compare this with the image below, showing
+                               the equation <p class="formula_rightnav">y = x<sup>2</sup> + 4x + 2.</p>
+<p class="imgcaption_rightnav">It's raining primes on that lower diagonal. The six purple squares on the gray spiral are the
+ values 2, 7, 23, 47, 79 and 167.</p>
+<img class="centered" src="images/Ulam/square-spiral-small-illustration_cropped.png" width="220" height="600" alt="Ulam's idea" />
+<p class="imgcaption_rightnav">In these images non-prime values are shown as open cyan colored squares while primes are shown as filled purple squares.
+                               Both the standard Cartesian and square spiral representations are shown in the same image. They share only the central zero point.
+                               The square spiral path, starting at 0, winds counter-clockwise and part of it is drawn in gray, though it, like the xy axes the quadratic
+    is drawn on, fills the plane.</p>
+<p class="imgcaption_rightnav">The square spiral is really the y axis spiraled around itself. Since the x axis from the Cartesian representation is gone, only
+                               the output of the quadratic is shown in the spiral representation. By eliminating the input (i.e., x) values from the representation
+                               we gain a much more succinct demonstration of just how prime-fertile many quadratics are.</p>
+<p class="imgcaption_rightnav">It is natural (isn't it?) to wonder why quadratic equations should be so fecund when it comes to primes. But are they really?
+Since many integer quadratics produce diagonal lines on the square spiral and many of those are prime rich, clearly there is an association between the prime diagonal dust in Ulam's spiral and quadratics that spit out primes. But does this really explain anything?</p>
+<p class="imgcaption_rightnav">After all, it would seem that some set of integer quadratic equations can produce all the positive integers. We can see this heuristically by considering the simplest quadratic and its diagonal square spiral representation and then imagining modifying it (i.e., changing (a,b,c) from (1,0,0)) so that this diagonal is swept over the whole of the square spiral plane. If both the output of such a set of quadratics and the square spiral itself (being just the number line) contain all the positive integers, the association might not be all that meaningful. The real question is more why do the primes tend to show this diagonal dust pattern in the first place? And that might have less to do with quadratics and more to do with another fact about the primes: namely, that there are a lot of them.</p>
+<p class="imgcaption_rightnav">In the main body of this page to the left we discover that this simple fact, the plethora of primes, combined with the intrinsically diagonal nature of the square spiral as the sieve of Eratosthenes is applied to it, can go a long way towards explaining the diagonal dust of Ulam's prime spiral.</p>
+<p class="imgcaption_rightnav">I wouldn't want to leave the impression that every quadratic produces diagonal lines on the square spiral. For example, some values of a, b, and c produce pinwheel-like effects. Like the diagonal lines, some of these pinwheels contain many primes and some appear to contain none at all.</p>
+<img class="centered" src="images/Ulam/quadratic-pinwheel-cropped.png" width="220" height="300" alt="Ulam's idea" />
+                               
+</div>  <!-- end right content -->
+</div>    
+<!-- end container -->
+
+<footer><div class="footer_text"> <script language="JavaScript">NothingToSeeHere('info')</script></div></footer>
+</body>
+</html>
